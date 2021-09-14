@@ -1,0 +1,26 @@
+/**
+ * --------------------------------------------------------------------------------
+ *  FONTS
+ * --------------------------------------------------------------------------------
+ */
+
+ @font-face {
+  font-family: Virgil;
+  src: url('./assets/fonts/Virgil.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/**
+ * ----------------------------------------------------------------------------
+ *  BASE
+ * ----------------------------------------------------------------------------
+ */
+
+body {
+  margin: 0;
+  font-family: Virgil, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
