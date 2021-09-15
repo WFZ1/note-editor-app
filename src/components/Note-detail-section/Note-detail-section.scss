@@ -1,0 +1,52 @@
+.Note-detail-section {
+  position: relative;
+  padding: 20px;
+  border: 2px solid #000;
+}
+
+.Note-detail-section__delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.Note-detail-section__box {
+  display: block;
+  margin-bottom: 40px;
+
+  &:last-of-type {
+    margin-bottom: 25px;
+  }
+}
+
+.Note-detail-section__box_size_mid {
+  max-width: 400px;
+}
+
+.Note-detail-section__title {
+  display: block;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.Note-detail-section__field {
+  width: 100%;
+  min-height: 60px;
+  padding: 5px 10px;
+  border: 2px solid #000;
+  vertical-align: middle;
+}
+
+.Note-detail-section__save {
+  max-width: 135px;
+  width: 100%;
+  min-height: 40px;
+  padding: 5px 10px;
+  background-color: transparent;
+  border: 2px solid #000;
+  cursor: pointer;
+}

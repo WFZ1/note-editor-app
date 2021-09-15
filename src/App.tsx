@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import './App.scss';
-import { NotesSection } from './components/NotesSection/Notes-section';
+import { NoteDetailSection } from './components/Note-detail-section/Note-detail-section';
+import { NotesSection } from './components/Notes-section/Notes-section';
 import INoteProps from './types/note-props.type';
 
 export const App: FC = () => {
@@ -11,6 +12,7 @@ export const App: FC = () => {
   return (
     <div className="App">
       <NotesSection notes={ notes } onAddNote={ addNote }/>
+      <NoteDetailSection />
     </div>
   );
 };

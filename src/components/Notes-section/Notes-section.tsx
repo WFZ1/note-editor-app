@@ -29,7 +29,7 @@ export const NotesSection: FC<INotesSectionProps> = (props: INotesSectionProps) 
 
   return (
     <div className="Notes-section">
-      <button className="Notes-section__btn-create" onClick={ () => createNote() }>+ New</button>
+      <button className="Notes-section__create" onClick={ () => createNote() }>+ New</button>
 
       <ul className="Notes-section__list" ref={ notesList }>
         {

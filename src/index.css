@@ -30,8 +30,9 @@ body {
   font-size: 18px;
 }
 
-button {
+button,
+input,
+textarea {
   font-family: Virgil, sans-serif;
-  box-sizing: border-box;
   font-size: inherit;
 }
