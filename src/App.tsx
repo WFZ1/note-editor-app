@@ -40,18 +40,20 @@ export const App: FC = () => {
   }
 
   return (
-    <div className="App">
-      <NotesSection
-        notes={ notes }
-        onAddNote={ addNote }
-        onSetActiveNote={ activateNote }
-      />
-      <NoteDetailSection
-        note={ activeNote }
-        onChangeNote={ changeActiveNote }
-        onSaveNote={ saveNote }
-        onDeleteNote={ deleteNote }
-      />
+    <div className="App page__app">
+      <div className="App__note-board">
+        <NotesSection
+          notes={ notes }
+          onAddNote={ addNote }
+          onSetActiveNote={ activateNote }
+        />
+        <NoteDetailSection
+          note={ activeNote }
+          onChangeNote={ changeActiveNote }
+          onSaveNote={ saveNote }
+          onDeleteNote={ deleteNote }
+        />
+      </div>
     </div>
   );
 };

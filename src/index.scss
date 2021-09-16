@@ -1,3 +1,5 @@
+@import './breakpoints.scss';
+
 /**
  * --------------------------------------------------------------------------------
  *  FONTS
@@ -23,6 +25,7 @@
 }
 
 body {
+  min-width: 320px;
   margin: 0;
   font-family: Virgil, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -35,4 +38,16 @@ input,
 textarea {
   font-family: Virgil, sans-serif;
   font-size: inherit;
+}
+
+#root {
+  padding: 20px 15px;
+
+  @include at ($min, $phone) {
+    padding: 20px;
+  }
+}
+
+.page__app {
+  margin: 0 auto;
 }

@@ -1,3 +1,17 @@
+@import './breakpoints.scss';
+
 .App {
-  margin: 25px;
+  max-width: 1085px;
+
+  @include at ($min, $phone) {
+    padding: 30px;
+    border: 2px solid #000;
+  }
+}
+
+.App__note-board {
+  @include at ($min, $phone) {
+    display: flex;
+    justify-content: space-between;
+  }
 }
