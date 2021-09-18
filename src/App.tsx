@@ -1,12 +1,19 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import './App.scss';
 import { NoteDetailSection } from './components/Note-detail-section/Note-detail-section';
 import { NotesSection } from './components/Notes-section/Notes-section';
+import { getNotesFromStorage } from './shared/get-notes-from-storage';
 import INoteProps from './types/note-props.type';
 
 export const App: FC = () => {
-  const [notes, setNotes] = useState<INoteProps[]>([]);
-  const [activeNote, setActiveNote] = useState<INoteProps | null>(null);
+  const storedData = getNotesFromStorage();
+  const [notes, setNotes] = useState<INoteProps[]>(storedData.notes);
+  const [activeNote, setActiveNote] = useState<INoteProps | null>(storedData.activeNote);
+
+  useEffect(() => {
+    const data = JSON.stringify(notes);
+    localStorage.setItem('notes', data);
+  }, [notes]);
 
   const addNote = (note: INoteProps): void => {
     setNotes([note, ...notes]);

@@ -1,21 +1,19 @@
 import { FC, useEffect, useRef, useState } from 'react';
+import { findMaxId } from '../../shared/find-max-id';
 import INotesSectionProps from '../../types/notes-section-props.type';
 import './Notes-section.scss';
 
 export const NotesSection: FC<INotesSectionProps> = (props: INotesSectionProps) => {
   const { notes, onAddNote, activeNote, onSetActiveNote } = props;
-  const [noteCounter, setNoteCounter] = useState<number>(1);
+
+  const noteInitialId = notes.length ? findMaxId(notes) : 1;
+  const [noteCounter, setNoteCounter] = useState<number>(noteInitialId);
 
   const notesList = useRef<null | HTMLUListElement>(null);
 
   const createNote = (): void => {
     const title = 'New note' + (noteCounter ? noteCounter : '');
-
-    onAddNote({
-      id: noteCounter,
-      title,
-      description: ''
-    });
+    onAddNote({ id: noteCounter, title, description: '' });
     setNoteCounter(noteCounter + 1);
   };
 
