@@ -29,6 +29,17 @@
   }
 }
 
+.Note-detail-section__box_invalid {
+  .Note-detail-section__title {
+    color: #d37474;
+  }
+
+  .Note-detail-section__field {
+    outline: 0;
+    border-color: #d37474;
+  }
+}
+
 .Note-detail-section__box_size_mid {
   max-width: 400px;
 }
@@ -57,4 +68,9 @@
   background-color: transparent;
   border: 2px solid #000;
   cursor: pointer;
+
+  &:disabled {
+    border-color: #acacac;
+    color: #acacac;
+  }
 }
