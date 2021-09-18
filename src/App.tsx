@@ -8,15 +8,10 @@ export const App: FC = () => {
   const [notes, setNotes] = useState<INoteProps[]>([]);
   const [activeNote, setActiveNote] = useState<INoteProps | null>(null);
 
-  const addNote = (note: INoteProps): void => setNotes([note, ...notes]);
-
-  const activateNote = (id: number): void => {
-    const currentNote = notes.find((note) => note.id === id);
-
-    if (currentNote) setActiveNote(currentNote);
-  }
-
-  const changeActiveNote = (note: INoteProps): void => setActiveNote(note);
+  const addNote = (note: INoteProps): void => {
+    setNotes([note, ...notes]);
+    setActiveNote(note);
+  };
 
   const saveNote = (): void => {
     if (!activeNote) return;
@@ -36,8 +31,14 @@ export const App: FC = () => {
     updNotes.splice(currentNoteIndex, 1);
 
     setNotes(updNotes);
-    setActiveNote(null);
-  }
+
+    if (updNotes.length) {
+      const newActiveNote = updNotes[currentNoteIndex] ? updNotes[currentNoteIndex] : updNotes[currentNoteIndex - 1];
+      setActiveNote(newActiveNote);
+    } else {
+      setActiveNote(null);
+    }
+  };
 
   return (
     <div className="App page__app">
@@ -45,11 +46,12 @@ export const App: FC = () => {
         <NotesSection
           notes={ notes }
           onAddNote={ addNote }
-          onSetActiveNote={ activateNote }
+          activeNote={ activeNote }
+          onSetActiveNote={ (note) => setActiveNote(note) }
         />
         <NoteDetailSection
           note={ activeNote }
-          onChangeNote={ changeActiveNote }
+          onChangeNote={ (note) => setActiveNote(note) }
           onSaveNote={ saveNote }
           onDeleteNote={ deleteNote }
         />
