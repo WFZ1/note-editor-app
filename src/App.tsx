@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import './App.scss';
 import { NoteDetailSection } from './components/Note-detail-section/Note-detail-section';
 import { NotesSection } from './components/Notes-section/Notes-section';
+import { SearchBar } from './components/Search-bar/Search-bar';
 import { getNotesFromStorage } from './shared/get-notes-from-storage';
 import INoteProps from './types/note-props.type';
 
@@ -9,11 +10,18 @@ export const App: FC = () => {
   const storedData = getNotesFromStorage();
   const [notes, setNotes] = useState<INoteProps[]>(storedData.notes);
   const [activeNote, setActiveNote] = useState<INoteProps | null>(storedData.activeNote);
+  const [search, setSearch] = useState<string>('');
 
   useEffect(() => {
     const data = JSON.stringify(notes);
     localStorage.setItem('notes', data);
   }, [notes]);
+
+  useEffect(() => {
+    if (search.length) {
+      setActiveNote(null);
+    }
+  }, [search]);
 
   const addNote = (note: INoteProps): void => {
     setNotes([note, ...notes]);
@@ -39,7 +47,7 @@ export const App: FC = () => {
 
     setNotes(updNotes);
 
-    if (updNotes.length) {
+    if (updNotes.length && !search) {
       const newActiveNote = updNotes[currentNoteIndex] ? updNotes[currentNoteIndex] : updNotes[currentNoteIndex - 1];
       setActiveNote(newActiveNote);
     } else {
@@ -49,12 +57,17 @@ export const App: FC = () => {
 
   return (
     <div className="App page__app">
+      <header className="App__header">
+        <SearchBar classes="App__search-bar" onSearch={ (title) => setSearch(title) } />
+      </header>
+
       <div className="App__note-board">
         <NotesSection
           notes={ notes }
           onAddNote={ addNote }
           activeNote={ activeNote }
           onSetActiveNote={ (note) => setActiveNote(note) }
+          search={ search }
         />
         <NoteDetailSection
           note={ activeNote }

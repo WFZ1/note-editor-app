@@ -1,0 +1,30 @@
+.Search-bar {
+  display: flex;
+  max-width: 430px;
+  min-height: 43px;
+  align-items: center;
+  border: 2px solid #000;
+}
+
+.Search-bar__field {
+  padding: 0 10px;
+  flex: 1;
+  font-size: 16px;
+  border: 0;
+  outline: none;
+
+  &::-webkit-search-cancel-button {
+    display: none;
+  }
+}
+
+.Search-bar__btn {
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.Search-bar__btn-image {
+  vertical-align: middle;
+}

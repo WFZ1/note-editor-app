@@ -9,6 +9,10 @@
   }
 }
 
+.App__header {
+  margin-bottom: 35px;
+}
+
 .App__note-board {
   @include at ($min, $phone) {
     display: flex;

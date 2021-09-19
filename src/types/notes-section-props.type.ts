@@ -5,4 +5,5 @@ export default interface INotesSectionProps {
   onAddNote: (note: INoteProps) => void;
   activeNote: INoteProps | null;
   onSetActiveNote: (note: INoteProps) => void;
+  search: string;
 };
