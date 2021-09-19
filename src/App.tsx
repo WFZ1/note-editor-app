@@ -3,14 +3,18 @@ import './App.scss';
 import { NoteDetailSection } from './components/Note-detail-section/Note-detail-section';
 import { NotesSection } from './components/Notes-section/Notes-section';
 import { SearchBar } from './components/Search-bar/Search-bar';
+import { SortBar } from './components/Sort-bar/Sort-bar';
 import { getNotesFromStorage } from './shared/get-notes-from-storage';
+import { sortNotes } from './shared/sort-notes';
 import INoteProps from './types/note-props.type';
+import ISortParams from './types/sort-params.type';
 
 export const App: FC = () => {
   const storedData = getNotesFromStorage();
   const [notes, setNotes] = useState<INoteProps[]>(storedData.notes);
   const [activeNote, setActiveNote] = useState<INoteProps | null>(storedData.activeNote);
   const [search, setSearch] = useState<string>('');
+  const [sort, setSort] = useState<ISortParams>({ type: 'none', direction: 'none' });
 
   useEffect(() => {
     const data = JSON.stringify(notes);
@@ -22,6 +26,13 @@ export const App: FC = () => {
       setActiveNote(null);
     }
   }, [search]);
+
+  useEffect(() => {
+    const updNotes = [...notes];
+
+    sortNotes({ notes: updNotes, sort })
+    setNotes(updNotes);
+  }, [sort]);
 
   const addNote = (note: INoteProps): void => {
     setNotes([note, ...notes]);
@@ -58,6 +69,11 @@ export const App: FC = () => {
   return (
     <div className="App page__app">
       <header className="App__header">
+        <SortBar
+          classes="App__sort-bar"
+          sort={ sort }
+          onSort={ (props) => setSort(props) }
+        />
         <SearchBar classes="App__search-bar" onSearch={ (title) => setSearch(title) } />
       </header>
 

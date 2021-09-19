@@ -11,6 +11,16 @@
 
 .App__header {
   margin-bottom: 35px;
+
+  @include at ($min, $phone) {
+    display: flex;
+  }
+}
+
+.App__sort-bar {
+  @include at ($min, $phone) {
+    margin-right: 3.5%;
+  }
 }
 
 .App__note-board {

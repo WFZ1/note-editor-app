@@ -1,0 +1,32 @@
+@import '../../breakpoints.scss';
+
+.Sort-bar {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
+
+  @include at ($min, $phone) {
+    width: 33.5%;
+    margin-bottom: 0;
+  }
+}
+
+.Sort-bar__btn {
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+
+  &::after {
+    margin-left: 15px;
+    content: "\021C5";
+  }
+}
+
+.Sort-bar__btn_type_asc::after {
+  content: "↑";
+}
+
+.Sort-bar__btn_type_desc::after {
+  content: "↓";
+}
